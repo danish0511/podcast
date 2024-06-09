@@ -1,21 +1,24 @@
-import { v } from "convex/values";
 import { action } from "./_generated/server";
+import { v } from "convex/values";
+
 import OpenAI from "openai";
 import { SpeechCreateParams } from "openai/resources/audio/speech.mjs";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-});
+})
 
 export const generateAudioAction = action({
   args: { input: v.string(), voice: v.string() },
   handler: async (_, { voice, input }) => {
     const mp3 = await openai.audio.speech.create({
       model: "tts-1",
-      voice: voice as SpeechCreateParams["voice"],
+      voice: voice as SpeechCreateParams['voice'],
       input,
     });
+
     const buffer = await mp3.arrayBuffer();
+    
     return buffer;
   },
 });
@@ -31,13 +34,14 @@ export const generateThumbnailAction = action({
       n: 1,
     })
 
-    const url = response.data[0].url
-    if (!url) {
-      throw new Error('Error generating thumbnail')
+    const url = response.data[0].url;
+
+    if(!url) {
+      throw new Error('Error generating thumbnail');
     }
 
-    const imageResponse = await fetch(url)
-    const buffer = await imageResponse.arrayBuffer()
-    return buffer
+    const imageResponse = await fetch(url);
+    const buffer = await imageResponse.arrayBuffer();
+    return buffer;
   }
 })

@@ -9,6 +9,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'secret-crab-225.convex.cloud'
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.clerk.com'
             }
         ]
     }
