@@ -35,7 +35,7 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
   if (!slides) return <LoaderSpinner />
 
   return (
-    <section className="felx flex-col w-full gap-4 overflow-hidden" ref={emblaRef}>
+    <section className="flex flex-col w-full gap-4 overflow-hidden" ref={emblaRef}>
         <div className='flex'>
             {slides.slice(0,5).map((item) =>(
                 <figure
